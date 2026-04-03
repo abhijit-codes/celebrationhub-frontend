@@ -1,23 +1,17 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
 import logo from "../assets/logo2.png";
 
 export default function Splash() {
   const navigate = useNavigate();
-  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      if (isAuthenticated) {
-        navigate("/detect-location");   // After login
-      } else {
-        navigate("/role");              // First open
-      }
-    }, 2500);
+      navigate("/role"); // ✅ always go to role
+    }, 5000); // ✅ 5 seconds
 
     return () => clearTimeout(timer);
-  }, [isAuthenticated, navigate]);
+  }, [navigate]);
 
   return (
     <div className="h-screen w-full flex items-center justify-center bg-celebration-gradient">
